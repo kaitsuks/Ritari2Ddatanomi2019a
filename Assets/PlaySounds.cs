@@ -24,9 +24,9 @@ public class PlaySounds : MonoBehaviour {
     public void PlayAllClips()
     {
         audio.clip = thirdClip;
-        PlayClip();
+        PlayClips();
         audio.clip = fourthClip;
-        PlayClip();
+        PlayClips();
 
     }
 
@@ -39,22 +39,22 @@ public class PlaySounds : MonoBehaviour {
 
     public void PlayClips()
     {
-        Debug.Log("Täällä ollaan...");
+        Debug.Log("Täällä PlayClips...");
         audio.Play();
     }
 
     public void ShowMe()
     {
-        Debug.Log("Täällä ollaan...");
+        Debug.Log("Täällä ShowMe...");
         audio.Play();
     }
 
     void Update()
     {
-        if (!audio.isPlaying)
-        {
-            audio.clip = otherClip;
-            audio.Play();
-        }
+        //if (!audio.isPlaying)
+        //{
+        //    audio.clip = otherClip;
+        //    audio.Play();
+        //}
     }
 }
