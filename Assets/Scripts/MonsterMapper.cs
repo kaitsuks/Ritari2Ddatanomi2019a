@@ -81,7 +81,7 @@ public class MonsterMapper : Physics2DObject
         //if(m_TreeGround.GetTile(gridPos) != null && m_TreeGround.GetTile(gridPos) != stub)
         if (m_TreeGround.GetTile(gridPos) == vesiTiili )
         {
-            Debug.Log("Monster on VEDESSÄ! " + gridPos);
+            //Debug.Log("Monster on VEDESSÄ! " + gridPos);
             //gameObject.SendMessage("SlowDown", 0.2f);
         }
         else
@@ -188,7 +188,7 @@ public class MonsterMapper : Physics2DObject
         //Move towards the target
         if (Mathf.Abs(killDistance.x) < 2f || Mathf.Abs(killDistance.y) < 2f)
         {
-            Debug.Log("Lähellä... " + killDistance);
+            //Debug.Log("Lähellä... " + killDistance);
             rigidbody2D.MovePosition(Vector2.Lerp(transform.position, target.position, Time.fixedDeltaTime * speed));
         }
         rigidbody2D.AddForce(direction * speed);

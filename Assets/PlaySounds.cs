@@ -9,23 +9,23 @@ public class PlaySounds : MonoBehaviour {
     public AudioClip thirdClip;
     public AudioClip fourthClip;
 
-    new AudioSource audio;
+   AudioSource audioSource;
 
     IEnumerator Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
-        audio.Play();
-        yield return new WaitForSeconds(audio.clip.length);
-        audio.clip = otherClip;
-        audio.Play();
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
+        audioSource.clip = otherClip;
+        audioSource.Play();
     }
 
     public void PlayAllClips()
     {
-        audio.clip = thirdClip;
+        audioSource.clip = thirdClip;
         PlayClips();
-        audio.clip = fourthClip;
+        audioSource.clip = fourthClip;
         PlayClips();
 
     }
@@ -33,28 +33,28 @@ public class PlaySounds : MonoBehaviour {
     public IEnumerator PlayClip()
     {
         Debug.Log("Yritetään soittaa...");
-        audio.Play();
-        yield return new WaitForSeconds(audio.clip.length);
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.clip.length);
     }
 
     public void PlayClips()
     {
         Debug.Log("Täällä PlayClips...");
-        audio.Play();
+        audioSource.Play();
     }
 
     public void ShowMe()
     {
         Debug.Log("Täällä ShowMe...");
-        audio.Play();
+        audioSource.Play();
     }
 
     void Update()
     {
-        //if (!audio.isPlaying)
+        //if (!audioSource.isPlaying)
         //{
-        //    audio.clip = otherClip;
-        //    audio.Play();
+        //    audioSource.clip = otherClip;
+        //    audioSource.Play();
         //}
     }
 }
