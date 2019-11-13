@@ -12,7 +12,7 @@ public class PlayWalking : MonoBehaviour {
     int n; //laskuri, vaihtoehtoinen klassinen tapa ajoitukseen 
     // Use this for initialization
     void Start () {
-        print("Alkuaika ............................" + Time.time);
+        //print("Alkuaika ............................" + Time.time);
         audioSource = GetComponent<AudioSource>();
         coroutine = Player(2.0f);
         StartCoroutine(coroutine); //Coroutine hoitaa ajoituksen
@@ -25,7 +25,7 @@ public class PlayWalking : MonoBehaviour {
         {
             n = 0;
             
-            Debug.Log("Soitetaan taas");
+            //Debug.Log("Soitetaan taas");
             //PlaySound(); //voidaan soittaa myös laskurin perusteella
         }
         
@@ -33,14 +33,14 @@ public class PlayWalking : MonoBehaviour {
 
     private IEnumerator Player(float t)
     {
-        print("Startataan coroutine  "+Time.time);
+        //print("Startataan coroutine  "+Time.time);
         
         while (true)
         {
             audioSource.Play(); //soitetaan t-välein...
             yield return new WaitForSecondsRealtime(t);
-            print(Time.time);
-            print("Playerista vielä...");
+            //print(Time.time);
+            //print("Playerista vielä...");
         }
 
 

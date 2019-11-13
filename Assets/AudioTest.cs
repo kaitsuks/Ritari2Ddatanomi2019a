@@ -8,10 +8,12 @@ public class AudioTest : MonoBehaviour
     public List<AudioClip> audioQueue = new List<AudioClip>();
 
     //Have index of where we are at in the queue
-    int index = 0;
+    int index = 1;
+    int count;
+    bool hasEntered = false;
 
     //Get the One AudioSource
-    new AudioSource audio;
+    AudioSource audioSource;
 
     public AudioClip firstClip;
     public AudioClip secondClip;
@@ -22,10 +24,12 @@ public class AudioTest : MonoBehaviour
     public AudioClip seventhClip;
     public AudioClip eigthClip;
 
-    bool hasEntered = false;
+   
     // Use this for initialization
-    void Start()
+    void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         audioQueue.Add(firstClip);
         audioQueue.Add(secondClip);
         audioQueue.Add(thirdClip);
@@ -34,21 +38,38 @@ public class AudioTest : MonoBehaviour
         audioQueue.Add(sixthClip);
         audioQueue.Add(seventhClip);
         audioQueue.Add(eigthClip);
+        
+        count = audioQueue.Count;
+        Debug.Log("audioQueue.Count = " + count);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        audio = other.GetComponent<AudioSource>();
-        if (other.CompareTag("zone") && hasEntered == false)
-        {
+        //audio = other.GetComponent<AudioSource>();
+        //if (other.CompareTag("zone") && hasEntered == false)
+            if (other.CompareTag("zone"))
+            {
             hasEntered = true;
             Debug.Log("Entered Zone");
-            if (!audio.isPlaying)
-            {
-                audio.clip = audioQueue[index];
-                audio.Play();
-                index += 1;
-            }
+            PlayAudio();
+        }
+   
+   }
+
+    public void PlayAudio()
+    {
+        Debug.Log("Index = " + index);
+        index += 1;
+        if (index > (count - 1))
+        {
+            index = 1;
+            //Debug.Log("Index resetoitu = " + index);
+        }
+        Debug.Log("Index nyt = " + index);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = audioQueue[index];
+            audioSource.Play();
         }
     }
 }
