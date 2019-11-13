@@ -45,16 +45,25 @@ public class AudioTest : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //audio = other.GetComponent<AudioSource>();
-        //if (other.CompareTag("zone") && hasEntered == false)
-            if (other.CompareTag("zone"))
+            if (other.CompareTag("Player"))
             {
             hasEntered = true;
-            Debug.Log("Entered Zone");
+            Debug.Log("Entered Zone!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             PlayAudio();
         }
    
    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            hasEntered = false;
+            Debug.Log("Exited Zone, no more playing sounds");
+            //PlayAudio();
+        }
+
+    }
 
     public void PlayAudio()
     {
@@ -66,7 +75,7 @@ public class AudioTest : MonoBehaviour
             //Debug.Log("Index resetoitu = " + index);
         }
         Debug.Log("Index nyt = " + index);
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && hasEntered == true)
         {
             audioSource.clip = audioQueue[index];
             audioSource.Play();
